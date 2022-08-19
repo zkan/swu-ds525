@@ -11,6 +11,13 @@ services:
       - postgres-data-volume:/var/lib/postgresql/data
     ports:
       - 5432:5432
+  adminer:
+    image: adminer:4.8.1
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
 
 volumes:
   postgres-data-volume:

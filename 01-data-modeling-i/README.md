@@ -21,3 +21,9 @@ For Mac users:
 ```sh
 brew install postgresql
 ```
+
+## Running Postgres
+
+```sh
+docker-compose up
+```
