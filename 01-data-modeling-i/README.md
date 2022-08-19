@@ -27,3 +27,9 @@ brew install postgresql
 ```sh
 docker-compose up
 ```
+
+To shutdown, press Ctrl+C and run:
+
+```sh
+docker-compose down
+```
