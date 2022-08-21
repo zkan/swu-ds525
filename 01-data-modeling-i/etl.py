@@ -1,6 +1,7 @@
 import glob
 import json
 import os
+from typing import List
 
 import psycopg2
 
@@ -13,7 +14,7 @@ table_insert = """
 """
 
 
-def get_files(filepath: str) -> list[str]:
+def get_files(filepath: str) -> List[str]:
     """
     Description: This function is responsible for listing the files in a directory
     """
