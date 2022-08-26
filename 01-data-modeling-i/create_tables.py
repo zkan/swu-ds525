@@ -1,18 +1,38 @@
+from typing import NewType
+
 import psycopg2
 
 
-table_drop = "DROP TABLE IF EXISTS songplays"
+PostgresCursor = NewType("PostgresCursor", psycopg2.extensions.cursor)
+PostgresConn = NewType("PostgresConn", psycopg2.extensions.connection)
 
-table_create = """
-    CREATE TABLE IF NOT EXISTS xxx (
+table_drop_events = "DROP TABLE IF EXISTS events"
+table_drop_actors = "DROP TABLE IF EXISTS actors"
+
+table_create_actors = """
+    CREATE TABLE IF NOT EXISTS actors (
+        id int,
+        login text,
+        PRIMARY KEY(id)
+    )
+"""
+table_create_events = """
+    CREATE TABLE IF NOT EXISTS events (
+        id text,
+        type text,
+        actor_id int,
+        PRIMARY KEY(id),
+        CONSTRAINT fk_actor FOREIGN KEY(actor_id) REFERENCES actors(id)
     )
 """
 
 create_table_queries = [
-    table_create,
+    table_create_actors,
+    table_create_events,
 ]
 drop_table_queries = [
-    table_drop,
+    table_drop_events,
+    table_drop_actors,
 ]
 
 

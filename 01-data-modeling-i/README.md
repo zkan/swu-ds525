@@ -33,3 +33,10 @@ To shutdown, press Ctrl+C and run:
 ```sh
 docker-compose down
 ```
+
+## Running ETL Scripts
+
+```sh
+python create_tables.py
+python etl.py
+```

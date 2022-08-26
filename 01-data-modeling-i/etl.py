@@ -6,14 +6,6 @@ from typing import List
 import psycopg2
 
 
-table_insert = """
-    INSERT INTO users (
-        xxx
-    ) VALUES (%s)
-    ON CONFLICT (xxx) DO NOTHING
-"""
-
-
 def get_files(filepath: str) -> List[str]:
     """
     Description: This function is responsible for listing the files in a directory
@@ -43,6 +35,29 @@ def process(cur, conn, filepath):
                 print(each["id"], each["type"], each["actor"]["login"])
 
                 # Insert data into tables here
+                insert_statement = f"""
+                    INSERT INTO actors (
+                        id,
+                        login
+                    ) VALUES ({each["actor"]["id"]}, '{each["actor"]["login"]}')
+                    ON CONFLICT (id) DO NOTHING
+                """
+                # print(insert_statement)
+                cur.execute(insert_statement)
+
+                # Insert data into tables here
+                insert_statement = f"""
+                    INSERT INTO events (
+                        id,
+                        type,
+                        actor_id
+                    ) VALUES ('{each["id"]}', '{each["type"]}', '{each["actor"]["id"]}')
+                    ON CONFLICT (id) DO NOTHING
+                """
+                # print(insert_statement)
+                cur.execute(insert_statement)
+
+                conn.commit()
 
 
 def main():
