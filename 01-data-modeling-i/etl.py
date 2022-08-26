@@ -32,7 +32,28 @@ def process(cur, conn, filepath):
             data = json.loads(f.read())
             for each in data:
                 # Print some sample data
-                print(each["id"], each["type"], each["actor"]["login"])
+                
+                if each["type"] == "IssueCommentEvent":
+                    print(
+                        each["id"], 
+                        each["type"],
+                        each["actor"]["id"],
+                        each["actor"]["login"],
+                        each["repo"]["id"],
+                        each["repo"]["name"],
+                        each["created_at"],
+                        each["payload"]["issue"]["url"],
+                    )
+                else:
+                    print(
+                        each["id"], 
+                        each["type"],
+                        each["actor"]["id"],
+                        each["actor"]["login"],
+                        each["repo"]["id"],
+                        each["repo"]["name"],
+                        each["created_at"],
+                    )
 
                 # Insert data into tables here
                 insert_statement = f"""
