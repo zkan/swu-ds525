@@ -7,7 +7,11 @@ drop_table_queries = [
 create_table_queries = [
     """
     CREATE TABLE IF NOT EXISTS staging_events (
-        id int
+        id text,
+        type text,
+        actor text,
+        repo text,
+        created_at text
     )
     """,
     """
