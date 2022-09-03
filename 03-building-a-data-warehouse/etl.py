@@ -18,9 +18,10 @@ create_table_queries = [
 ]
 copy_table_queries = [
     """
-    COPY staging_events FROM 's3://zkan-swu-labs/events.csv'
+    COPY staging_events FROM 's3://zkan-swu-labs/github_events_01.json'
     CREDENTIALS 'aws_iam_role=arn:aws:iam::377290081649:role/LabRole'
-    IGNOREHEADER 1 CSV REGION 'us-east-1'
+    JSON 's3://zkan-swu-labs/events_json_path.json'
+    REGION 'us-east-1'
     """,
 ]
 insert_table_queries = [
