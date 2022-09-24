@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  pyspark-notebook:
+    image: jupyter/pyspark-notebook
+    volumes:
+      - .:/home/jovyan/work
+    ports:
+      - 8888:8888
+      - 4040:4040
+      - 4041:4041
