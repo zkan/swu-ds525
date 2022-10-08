@@ -217,5 +217,23 @@ services:
       - -c
       - airflow
 
+  warehouse:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - warehouse-data-volume:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:4.8.1
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - 8088:8080
+
 volumes:
   postgres-db-volume:
+  warehouse-db-volume:
