@@ -224,7 +224,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     volumes:
-      - warehouse-data-volume:/var/lib/postgresql/data
+      - warehouse-db-volume:/var/lib/postgresql/data
 
   adminer:
     image: adminer:4.8.1
