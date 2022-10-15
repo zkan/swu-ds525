@@ -147,4 +147,4 @@ with DAG(
         python_callable=_process,
     )
 
-    get_files >> create_tables >> process
+    [get_files, create_tables] >> process
