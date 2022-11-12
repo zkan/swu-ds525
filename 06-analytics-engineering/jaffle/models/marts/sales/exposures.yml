@@ -1,0 +1,17 @@
+version: 2
+
+exposures:
+
+  - name: weekly_jaffle_metrics
+    type: dashboard
+    maturity: high
+    url: https://bi.tool/dashboards/1
+    description: >
+      My cool dashboard
+
+    depends_on:
+      - ref('completed_orders')
+
+    owner:
+      name: Kan Ouivirach
+      email: kan@odds.team
