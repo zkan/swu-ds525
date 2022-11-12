@@ -1,30 +1,21 @@
 with
 
-orders as (
+int_orders_customers_joined as (
 
-    select * from {{ ref('stg_jaffle__orders') }}
-
-)
-
-, customers as (
-
-    select * from {{ ref('stg_jaffle__customers') }}
+    select * from {{ ref('int_orders_customers_joined') }}
 
 )
 
 , final as (
 
     select
-        o.id as order_id
-        , o.order_date
-        , o.status as order_status
-        , c.name as customer_name
+        order_id
+        , order_date
+        , order_status
+        , customer_name
 
-    from orders as o
-    join customers as c
-    on
-        o.user_id = c.id
-    where status = 'completed'
+    from int_orders_customers_joined
+    where order_status = 'completed'
 
 )
 
