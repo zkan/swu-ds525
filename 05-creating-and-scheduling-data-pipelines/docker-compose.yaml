@@ -226,13 +226,22 @@ services:
     volumes:
       - warehouse-db-volume:/var/lib/postgresql/data
 
-  adminer:
-    image: adminer:4.8.1
+  sqlpad:
+    image: sqlpad/sqlpad:6.11.2
     restart: always
     depends_on:
-      - postgres
+      - warehouse
+    environment:
+      SQLPAD_ADMIN: admin@swu.ac.th
+      SQLPAD_ADMIN_PASSWORD: admin
+      SQLPAD_CONNECTIONS__pgdb__name: Warehouse
+      SQLPAD_CONNECTIONS__pgdb__driver: postgres
+      SQLPAD_CONNECTIONS__pgdb__host: warehouse
+      SQLPAD_CONNECTIONS__pgdb__database: postgres
+      SQLPAD_CONNECTIONS__pgdb__username: postgres
+      SQLPAD_CONNECTIONS__pgdb__password: postgres
     ports:
-      - 8088:8080
+      - 3000:3000
 
 volumes:
   postgres-db-volume:
