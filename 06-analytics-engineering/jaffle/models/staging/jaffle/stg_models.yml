@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: stg_jaffle__customers
+    description: Staging model for customers
+    columns:
+      - name: id
+      - name: name
