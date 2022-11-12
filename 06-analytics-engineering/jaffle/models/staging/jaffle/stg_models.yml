@@ -5,4 +5,25 @@ models:
     description: Staging model for customers
     columns:
       - name: id
+        tests:
+          - unique
+          - not_null
       - name: name
+
+  - name: stg_jaffle__orders
+    description: Staging model for orders
+    columns:
+      - name: id
+      - name: user_id
+      - name: order_date
+      - name: status
+
+  - name: stg_jaffle__stripe_payments
+    description: Staging model for Stripe payments
+    columns:
+      - name: id
+      - name: order_id
+      - name: payment_method
+      - name: amount
+      - name: status
+      - name: created
