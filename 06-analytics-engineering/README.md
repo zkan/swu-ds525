@@ -64,5 +64,5 @@ To view docs (on Gitpod)
 
 ```sh
 dbt docs generate
-dbt docs serve --no-browser
+dbt docs serve
 ```
