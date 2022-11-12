@@ -12,13 +12,23 @@ services:
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5432:5432
-  adminer:
-    image: adminer:4.8.1
+
+  sqlpad:
+    image: sqlpad/sqlpad:6.11.2
     restart: always
     depends_on:
       - postgres
+    environment:
+      SQLPAD_ADMIN: admin@swu.ac.th
+      SQLPAD_ADMIN_PASSWORD: admin
+      SQLPAD_CONNECTIONS__pgdb__name: Postgres
+      SQLPAD_CONNECTIONS__pgdb__driver: postgres
+      SQLPAD_CONNECTIONS__pgdb__host: postgres
+      SQLPAD_CONNECTIONS__pgdb__database: postgres
+      SQLPAD_CONNECTIONS__pgdb__username: postgres
+      SQLPAD_CONNECTIONS__pgdb__password: postgres
     ports:
-      - 8088:8080
+      - 3000:3000
 
 volumes:
   postgres-data-volume:
